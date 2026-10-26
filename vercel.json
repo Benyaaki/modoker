@@ -47,6 +47,10 @@
     {
       "source": "/verifica-correo",
       "destination": "/verifica-correo.html"
+    },
+    {
+      "source": "/correo-confirmado",
+      "destination": "/correo-confirmado.html"
     }
   ]
 }
