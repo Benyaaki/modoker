@@ -1,0 +1,48 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "cleanUrls": false,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/cuenta",
+      "destination": "/cuenta.html"
+    },
+    {
+      "source": "/admin",
+      "destination": "/admin.html"
+    },
+    {
+      "source": "/plus",
+      "destination": "/plus.html"
+    },
+    {
+      "source": "/descarga",
+      "destination": "/descarga.html"
+    },
+    {
+      "source": "/como-funciona",
+      "destination": "/como-funciona.html"
+    },
+    {
+      "source": "/politicas",
+      "destination": "/politicas.html"
+    },
+    {
+      "source": "/privacidad",
+      "destination": "/privacidad.html"
+    },
+    {
+      "source": "/terminos",
+      "destination": "/terminos.html"
+    },
+    {
+      "source": "/cookies",
+      "destination": "/cookies.html"
+    },
+    {
+      "source": "/uso-responsable",
+      "destination": "/uso-responsable.html"
+    }
+  ]
+}
