@@ -86,7 +86,7 @@
    else result=await client.auth.signInWithPassword({email,password});
    if(result.error)throw result.error;
    field('#access-password').value='';field('#access-confirm').value='';
-   if(mode==='register')say('Si el correo puede registrarse, recibirás un enlace de confirmación. Revisa también spam.');
+   if(mode==='register'){if(result.data?.session){await restore();}else{try{sessionStorage.setItem('modoker-pending-email',email);}catch{}location.assign(new URL('verifica-correo.html',location.href).href);}}
    else if(mode==='reset')say('Si existe una cuenta con ese correo, recibirás un enlace para recuperar el acceso. Ábrelo en este mismo navegador.');
    else if(mode==='update'){recovering=false;setMode('login');await client.auth.signOut({scope:'local'});say('Contraseña actualizada. Inicia sesión con tu nueva contraseña.');}
    else {await restore();say('Sesión iniciada.');}

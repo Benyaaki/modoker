@@ -43,6 +43,10 @@
     {
       "source": "/uso-responsable",
       "destination": "/uso-responsable.html"
+    },
+    {
+      "source": "/verifica-correo",
+      "destination": "/verifica-correo.html"
     }
   ]
 }
