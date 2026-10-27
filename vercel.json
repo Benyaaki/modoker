@@ -51,6 +51,10 @@
     {
       "source": "/correo-confirmado",
       "destination": "/correo-confirmado.html"
+    },
+    {
+      "source": "/timbres",
+      "destination": "/timbres.html"
     }
   ],
   "headers": [

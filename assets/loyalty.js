@@ -14,6 +14,7 @@
  }
  if(value){const latest=value.rewards[0];if(latest&&Number.isFinite(Date.parse(latest.valid_until))){const date=v=>new Intl.DateTimeFormat(window.ModokerI18n?.locale()||'es-CL',{dateStyle:'medium'}).format(new Date(v));container.append(make('p','Último regalo: '+date(latest.valid_from)+' → '+date(latest.valid_until)+'.','loyalty-reward'));}if(value.cards)container.append(make('small',value.cards+' tarjeta'+(value.cards===1?' completada.':'s completadas.')));}
  container.append(make('small','Mantén la continuidad de Plus: al vencer tienes siete días de gracia para renovar y conservar los timbres. Después se reinicia solo la tarjeta incompleta. Los regalos ganados se conservan. Los dos meses de premio mantienen la continuidad, pero no suman timbres. Las correcciones, adjudicaciones retiradas y pagos reembolsados pueden recalcular el progreso.'));
+ if(!root.shift){const rules=make('a','Reglas de timbres y continuidad ↗');rules.href='timbres.html';rules.className='text-link';container.append(rules);}
  if(value&&!value.cards&&!value.stamps)container.append(make('small','Tu primer mes completo de Plus inicia la tarjeta. No hace falta que sea de pago.'));
 
  }
