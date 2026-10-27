@@ -1,8 +1,8 @@
 {
-  "version": "0.25.3",
+  "version": "0.25.4",
   "electron": "45.0.0",
-  "bytes": 4013390,
-  "sha256": "170d422b2e45d378f69fa8909fad4f57cc4d8060f86449f88818634bd865c8c1",
-  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.25.3/Modoker-0.25.3.asar",
-  "notes": "Actualizaciones desde Preferencias: descarga verificada, respaldo y reinicio sin tocar tus perfiles ni mods."
+  "bytes": 4017866,
+  "sha256": "6dcbf5d6a24b07cf09d41c31084f8c855fb9186237514f70a98b3a885be4967f",
+  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.25.4/Modoker-0.25.4.asar",
+  "notes": "Tu tarjeta Plus premia la continuidad: siete días de gracia al vencer, reinicio de tarjetas incompletas y conservación de regalos ganados. Nuevos avisos con tu fecha límite. Tus perfiles y mods se conservan."
 }
