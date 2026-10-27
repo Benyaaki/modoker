@@ -80,16 +80,17 @@
   busy=true;field('#access-submit').disabled=true;form.setAttribute('aria-busy','true');say('Un momento…');
   try{
    let result;
+   if(mode==='register')window.ModokerAnalytics?.track('signup_submit');
    if(mode==='register')result=await client.auth.signUp({email,password,options:{emailRedirectTo:callback,data:{display_name:field('#access-name').value.trim().slice(0,80)}}});
    else if(mode==='reset')result=await client.auth.resetPasswordForEmail(email,{redirectTo:callback});
    else if(mode==='update')result=await client.auth.updateUser({password});
    else result=await client.auth.signInWithPassword({email,password});
    if(result.error)throw result.error;
    field('#access-password').value='';field('#access-confirm').value='';
-   if(mode==='register'){if(result.data?.session){await restore();}else{try{sessionStorage.setItem('modoker-pending-email',email);}catch{}location.assign(new URL('verifica-correo.html',location.href).href);}}
+   if(mode==='register'){window.ModokerAnalytics?.track('signup_ack');if(result.data?.session){await restore();}else{try{sessionStorage.setItem('modoker-pending-email',email);}catch{}location.assign(new URL('verifica-correo.html',location.href).href);}}
    else if(mode==='reset')say('Si existe una cuenta con ese correo, recibirás un enlace para recuperar el acceso. Ábrelo en este mismo navegador.');
    else if(mode==='update'){recovering=false;setMode('login');await client.auth.signOut({scope:'local'});say('Contraseña actualizada. Inicia sesión con tu nueva contraseña.');}
-   else {await restore();say('Sesión iniciada.');}
+   else {window.ModokerAnalytics?.track('login_success');await restore();say('Sesión iniciada.');}
   }catch(error){say(explain(error),true);}
   finally{busy=false;field('#access-submit').disabled=false;form.removeAttribute('aria-busy');}
  });
