@@ -15,6 +15,20 @@
   const available=$$(`[data-${prefix}-panel]`);if(!available.some(x=>x.dataset[prefix+'Panel']===key))return;
   available.forEach(x=>x.hidden=x.dataset[prefix+'Panel']!==key);
   $$(`[data-${prefix}-view]`).forEach(b=>b.setAttribute('aria-pressed',String(b.dataset[prefix+'View']===key)));
+  // A shorter panel must not leave the viewport at the old panel's footer.
+  const heading=prefix==='admin'?$('#admin-section-title'):available.find(x=>!x.hidden)?.querySelector('h2,h3');
+  if(heading){
+   const frame=heading.closest('.dashboard-content')||heading.parentElement;
+   if(frame)frame.style.overflowAnchor='none';
+   requestAnimationFrame(()=>{
+    if(!heading.isConnected)return;
+    heading.setAttribute('tabindex','-1');heading.focus({preventScroll:true});
+    const header=$('.site-header'),offset=(header?.getBoundingClientRect().bottom||0)+24;
+    const top=Math.max(0,window.scrollY+heading.getBoundingClientRect().top-Math.max(110,offset));
+    window.scrollTo({top,behavior:'instant'});
+   });
+  }
+
  }
  $$('[data-member-view]').forEach(b=>b.addEventListener('click',()=>selectView('member',b.dataset.memberView)));
  $$('[data-member-jump]').forEach(b=>b.addEventListener('click',()=>selectView('member',b.dataset.memberJump)));
