@@ -1,8 +1,8 @@
 {
-  "version": "0.26.1",
+  "version": "0.26.2",
   "electron": "45.0.0",
-  "bytes": 4053986,
-  "sha256": "4f128be163d4fee3ad0dceb8f542490d3f101992325d6385e723b6b99d46096d",
-  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.26.1/Modoker-0.26.1.asar",
-  "notes": "Minecraft: reconoce correctamente JAR universales Forge/NeoForge sin duplicar identidades ni mezclar dependencias entre cargadores. Actualiza metadatos anteriores sin recrear perfiles ni cambiar sus archivos."
+  "bytes": 4068494,
+  "sha256": "e6fe5734025524b96de3d6eaf98d6bb1e6d8b952712f01f8d3eb2e2ebc8687b0",
+  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.26.2/Modoker-0.26.2.asar",
+  "notes": "Minecraft cuenta los JAR, sin confundirlos con carpetas. Análisis con indicador y resultado visible. Original y Con mods confirman el estado aplicado. Bloqueo de acciones durante los cambios y reserva de operaciones desde la confirmación hasta el final."
 }
