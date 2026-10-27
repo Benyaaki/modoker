@@ -1,8 +1,8 @@
 {
-  "version": "0.26.0",
+  "version": "0.26.1",
   "electron": "45.0.0",
-  "bytes": 4053323,
-  "sha256": "9002766eed9b9a9e77218686566b0e19823b494389f9fdbb37b8d58750c11c31",
-  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.26.0/Modoker-0.26.0.asar",
-  "notes": "Motor local de identificación: metadatos LML, contenido DLC de GTA, evidencia y conjuntos compartidos. Selecciones sugeridas sin crear perfiles, dependencias explicadas, búsqueda y correcciones de identidad guardadas localmente. Conserva tus perfiles y archivos."
+  "bytes": 4053986,
+  "sha256": "4f128be163d4fee3ad0dceb8f542490d3f101992325d6385e723b6b99d46096d",
+  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.26.1/Modoker-0.26.1.asar",
+  "notes": "Minecraft: reconoce correctamente JAR universales Forge/NeoForge sin duplicar identidades ni mezclar dependencias entre cargadores. Actualiza metadatos anteriores sin recrear perfiles ni cambiar sus archivos."
 }
