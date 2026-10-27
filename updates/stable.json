@@ -1,8 +1,8 @@
 {
-  "version": "0.26.2",
+  "version": "0.26.3",
   "electron": "45.0.0",
-  "bytes": 4068494,
-  "sha256": "e6fe5734025524b96de3d6eaf98d6bb1e6d8b952712f01f8d3eb2e2ebc8687b0",
-  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.26.2/Modoker-0.26.2.asar",
-  "notes": "Minecraft cuenta los JAR, sin confundirlos con carpetas. Análisis con indicador y resultado visible. Original y Con mods confirman el estado aplicado. Bloqueo de acciones durante los cambios y reserva de operaciones desde la confirmación hasta el final."
+  "bytes": 4079398,
+  "sha256": "6b46f2bd5ef879462714b0da36eb470395791a4e4aeea4059a198f5589aeabda",
+  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.26.3/Modoker-0.26.3.asar",
+  "notes": "Perfiles con progreso de revisión y guardado. Minecraft reutiliza los JAR sin cambios y evita las copias periódicas al estar en reposo. Nuevo indicador pequeño de actualización, aviso al abrir y errores de comprobación visibles."
 }
