@@ -52,5 +52,16 @@
       "source": "/correo-confirmado",
       "destination": "/correo-confirmado.html"
     }
+  ],
+  "headers": [
+    {
+      "source": "/updates/stable.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    }
   ]
 }

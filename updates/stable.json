@@ -1,0 +1,8 @@
+{
+  "version": "0.25.3",
+  "electron": "45.0.0",
+  "bytes": 4013390,
+  "sha256": "170d422b2e45d378f69fa8909fad4f57cc4d8060f86449f88818634bd865c8c1",
+  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.25.3/Modoker-0.25.3.asar",
+  "notes": "Actualizaciones desde Preferencias: descarga verificada, respaldo y reinicio sin tocar tus perfiles ni mods."
+}
