@@ -1,8 +1,8 @@
 {
-  "version": "0.26.5",
+  "version": "0.26.7",
   "electron": "45.0.0",
-  "bytes": 4080191,
-  "sha256": "be8806b578841d747fe2c5c8bc70bb87cf13927f82a3fe9735e68d91e61afe31",
-  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.26.5/Modoker-0.26.5.asar",
-  "notes": "Prueba del actualizador de Modoker: descarga verificada y reinicio para pasar de 0.26.4 a 0.26.5. Incluye el aviso al intentar cerrar durante una comprobación. Tu cuenta, perfiles y mods conservan su lugar."
+  "bytes": 4120433,
+  "sha256": "0655e3e95177370996cc85628278396f3b411ef7ee8434f0eaace20d74359655",
+  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.26.7/Modoker-0.26.7.asar",
+  "notes": "Actualizador corregido: confirma el arranque del auxiliar antes de cerrar Modoker, verifica el archivo, conserva la versión anterior y reinicia la app. Aviso de actualización más pequeño. Prueba de actualización desde la 0.26.6."
 }
