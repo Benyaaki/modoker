@@ -1,8 +1,8 @@
 {
-  "version": "0.26.3",
+  "version": "0.26.5",
   "electron": "45.0.0",
-  "bytes": 4079398,
-  "sha256": "6b46f2bd5ef879462714b0da36eb470395791a4e4aeea4059a198f5589aeabda",
-  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.26.3/Modoker-0.26.3.asar",
-  "notes": "Perfiles con progreso de revisión y guardado. Minecraft reutiliza los JAR sin cambios y evita las copias periódicas al estar en reposo. Nuevo indicador pequeño de actualización, aviso al abrir y errores de comprobación visibles."
+  "bytes": 4080191,
+  "sha256": "be8806b578841d747fe2c5c8bc70bb87cf13927f82a3fe9735e68d91e61afe31",
+  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.26.5/Modoker-0.26.5.asar",
+  "notes": "Prueba del actualizador de Modoker: descarga verificada y reinicio para pasar de 0.26.4 a 0.26.5. Incluye el aviso al intentar cerrar durante una comprobación. Tu cuenta, perfiles y mods conservan su lugar."
 }
