@@ -1,8 +1,8 @@
 {
-  "version": "0.25.5",
+  "version": "0.26.0",
   "electron": "45.0.0",
-  "bytes": 4020001,
-  "sha256": "5a81688ad226eef3a16d53f331725f7f36b4f615603a82947eb1eb45275c4d35",
-  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.25.5/Modoker-0.25.5.asar",
-  "notes": "GTA V: identifica el contenido de vegetación instalado y explica sus archivos compartidos. El análisis de Biblioteca prepara Perfiles automáticamente y muestra cuándo tus mods están listos. Tus perfiles y archivos se conservan."
+  "bytes": 4053323,
+  "sha256": "9002766eed9b9a9e77218686566b0e19823b494389f9fdbb37b8d58750c11c31",
+  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.26.0/Modoker-0.26.0.asar",
+  "notes": "Motor local de identificación: metadatos LML, contenido DLC de GTA, evidencia y conjuntos compartidos. Selecciones sugeridas sin crear perfiles, dependencias explicadas, búsqueda y correcciones de identidad guardadas localmente. Conserva tus perfiles y archivos."
 }
