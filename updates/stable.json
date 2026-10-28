@@ -1,8 +1,8 @@
 {
-  "version": "0.26.9",
+  "notes": "Carga circular con la M original y estallido suave; el agua sube solo con avance medido. Confirmación de perfiles integrada con detalles desplegables. Contadores que incluyen la biblioteca de perfiles. Cambio directo de perfiles, mensajes de guardado y registro web corregidos. Se conservan tus perfiles, sesiones y mods.",
+  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.26.13/Modoker-0.26.13.asar",
+  "bytes": 4169901,
+  "sha256": "e4d8e9bc664a36e6aa322cd81daab6d60a2b767095908bc87d42b857f228299e",
   "electron": "45.0.0",
-  "bytes": 4126558,
-  "sha256": "73156bf544d8add37bce0fbe3b5530762ee3defc18c90af9365e7d312415d9c3",
-  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.26.9/Modoker-0.26.9.asar",
-  "notes": "Perfiles: conflictos en un desplegable compacto, elección explícita de componentes cuando hay varias versiones y mensajes de guardado junto al botón. Sugerencias opcionales separadas de los perfiles guardados."
+  "version": "0.26.13"
 }

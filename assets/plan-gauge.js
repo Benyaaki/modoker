@@ -7,7 +7,7 @@
  document.querySelectorAll('[data-plan-gauge]').forEach(g=>{gauges.add(g);draw(g,0);io.observe(g);});
  function setAccount(plus){document.querySelectorAll('[data-account-gauge]').forEach(g=>{const plan=plus?'plus':'free',changed=g.dataset.plan!==plan;g.dataset.plan=plan;g.closest('.plan-stage')?.setAttribute('data-plan',plan);if(changed&&visible.has(g))play(g);});}
  document.addEventListener('modoker:account',e=>setAccount(e.detail.account.plus===true));if(window.modokerAccountState)setAccount(window.modokerAccountState.account.plus===true);
- document.querySelectorAll('[data-gauge-choice]').forEach(b=>b.addEventListener('click',()=>{const g=document.querySelector('[data-demo-gauge]');g.dataset.plan=b.dataset.gaugeChoice;document.querySelectorAll('[data-gauge-choice]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));document.querySelector('#potential-label').textContent=b.dataset.gaugeChoice==='plus'?'Plus · más formas de jugar':'Gratis · tu primer perfil';play(g);}));
+ document.querySelectorAll('[data-gauge-choice]').forEach(b=>b.addEventListener('click',()=>{const g=document.querySelector('[data-demo-gauge]');g.dataset.plan=b.dataset.gaugeChoice;document.querySelectorAll('[data-gauge-choice]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));document.querySelector('#potential-label').textContent=b.dataset.gaugeChoice==='plus'?'Plus · más formas de jugar':'Gratis · Original y Con mods';play(g);}));
  function respectMotion(){if(reduced())gauges.forEach(g=>{cancelAnimationFrame(frames.get(g));draw(g,g.dataset.plan==='plus'?1:.38);});}
  new MutationObserver(respectMotion).observe(root,{attributes:true,attributeFilter:['data-motion']});media.addEventListener('change',respectMotion);
 })();
