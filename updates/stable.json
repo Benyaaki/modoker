@@ -1,8 +1,8 @@
 {
-  "version": "0.26.7",
+  "version": "0.26.8",
   "electron": "45.0.0",
-  "bytes": 4120433,
-  "sha256": "0655e3e95177370996cc85628278396f3b411ef7ee8434f0eaace20d74359655",
-  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.26.7/Modoker-0.26.7.asar",
-  "notes": "Actualizador corregido: confirma el arranque del auxiliar antes de cerrar Modoker, verifica el archivo, conserva la versión anterior y reinicia la app. Aviso de actualización más pequeño. Prueba de actualización desde la 0.26.6."
+  "bytes": 4121281,
+  "sha256": "750dbcf9ed161e8b4532dec81d9ce651fe6666cef35c80655acf27732afdbc72",
+  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.26.8/Modoker-0.26.8.asar",
+  "notes": "Corregida la detección de mods con el mismo nombre dentro del juego y guardados fuera. Se conservan como versiones separadas. Los errores ya no provocan comprobaciones automáticas repetidas y se muestra el grupo que está siendo revisado."
 }
