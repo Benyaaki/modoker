@@ -1,0 +1,16 @@
+.plus-stamps-section{padding:0;min-height:280svh;position:relative;overflow:visible}
+.stamps-story{position:sticky;top:105px;min-height:calc(100svh - 105px);padding-block:55px;align-content:center}
+.stamp-scroll-hint{font-weight:700;margin-top:25px!important}.stamp-skip{display:inline-block;margin-top:8px;font-size:12px}
+.stamp-demo{position:relative;overflow:hidden;transition:box-shadow .3s,transform .3s}.stamp-demo::before{content:'';position:absolute;left:0;top:0;height:5px;width:calc(var(--stamp-progress,0)*100%);background:#287bf1}
+.demo-stamps span.stamped::after{content:'';background:#fffef5 url('favicon.svg') center/42px 42px no-repeat}
+.stamp-demo .gift-disc{transition:transform .45s cubic-bezier(.2,.8,.2,1.2),background-color .3s}
+.stamp-demo.card-complete .gift-disc{transform:rotate(-8deg) scale(1.14);background:#287bf1;color:#fffef5}
+.stamp-demo.card-complete{box-shadow:8px 10px 0 #22271d;transform:translateY(-3px)}
+.stamps-scroll-compact{min-height:0;padding-block:55px}.stamps-scroll-compact .stamps-story{position:static;min-height:0;padding-block:0}
+.stamp-demo-track{display:contents}.stamps-scroll-compact .stamp-demo-track{display:block;min-height:210svh}.stamps-scroll-compact .stamp-demo{position:sticky;top:110px}
+.stamps-scroll-reduced{min-height:0;padding-block:65px}.stamps-scroll-reduced .stamps-story{position:static;min-height:0;padding-block:0}
+.stamps-scroll-reduced .stamp-demo-track{display:block;min-height:0}.stamps-scroll-reduced .stamp-demo{position:static}
+.stamps-scroll-reduced .stamp-scroll-hint{display:none}.stamps-scroll-reduced .stamp-demo,.stamps-scroll-reduced .demo-stamps span,.stamps-scroll-reduced .gift-disc{animation:none!important;transition:none!important}
+#plus-comparacion{scroll-margin-top:120px}
+@media(max-width:760px){.stamps-story{gap:32px}.stamps-story .stamp-note{font-size:12px}.stamp-demo{width:100%;max-width:480px;margin-inline:auto}}
+@media(prefers-reduced-motion:reduce){.plus-stamps-section{min-height:0;padding-block:65px}.stamps-story{position:static;min-height:0;padding-block:0}.stamp-demo,.gift-disc{transition:none!important}.demo-stamps span{animation:none!important}}
