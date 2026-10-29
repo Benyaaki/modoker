@@ -1,8 +1,8 @@
 {
-  "notes": "Pantallas de carga solo para acciones reales: activar o guardar perfiles, mover mods y análisis manual. Cambiar de juego, seleccionar Original/Con mods y actualizar listas no abre la burbuja. Activar un perfil muestra una única carga después de confirmar. Tus perfiles, cuenta y mods se conservan.",
-  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.26.14/Modoker-0.26.14.asar",
-  "bytes": 4170022,
-  "sha256": "3ac92a06305886a023d2936efca024520decaf0bf7196e1ed3fa438aea23903f",
+  "notes": "Confirmaciones personalizadas con liquid glass para perfiles y guardar/restaurar mods. Burbuja glass al terminar y menor espera visual. Actualizaciones con descarga y verificación visibles hasta reiniciar. Preparación de perfiles con una lectura completa menos, conservando la verificación antes de cambiar el juego. Tus perfiles, cuenta y mods se conservan.",
+  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.26.15/Modoker-0.26.15.asar",
+  "bytes": 4174307,
+  "sha256": "7f87ce41eb05648d3b94ca18e69efd5610d0b55697b6bf6b1cef8065f2561714",
   "electron": "45.0.0",
-  "version": "0.26.14"
+  "version": "0.26.15"
 }
