@@ -1,8 +1,8 @@
 {
-  "notes": "Corrige el bloqueo de clics al terminar de activar un perfil: la pantalla de carga libera correctamente la interfaz después de confirmar. También restaura la interacción ante errores y cancelaciones. Conserva las mejoras glass y de actualización. Tus perfiles, cuenta y mods se conservan.",
-  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.26.16/Modoker-0.26.16.asar",
-  "bytes": 4174333,
-  "sha256": "9400afe406cc2b39105ef50834a30ad4d9bacb098456738cf43aa00fc7e33286",
+  "notes": "Nuevos juegos en pruebas: Los Sims 4 (contenido de Mods), Elden Ring (carpeta separada para Mod Engine 3) y Stardew Valley (carpetas SMAPI). Portadas oficiales, seis juegos en el selector y perfiles por juego. Identificación y dependencias SMAPI desde manifest.json. Guardados y archivos originales fuera de la gestión. Las pruebas dentro de los tres juegos nuevos siguen pendientes. Se conservan tus perfiles y cuenta.",
+  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.27.0/Modoker-0.27.0.asar",
+  "bytes": 7122246,
+  "sha256": "f41d6c014d6ad451bc84013118cdd168e47d99a19fa894bc8a0dc87aa3c15b99",
   "electron": "45.0.0",
-  "version": "0.26.16"
+  "version": "0.27.0"
 }
