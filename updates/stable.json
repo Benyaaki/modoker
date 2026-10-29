@@ -1,8 +1,8 @@
 {
-  "notes": "Logos oficiales de Los Sims 4, Elden Ring y Stardew Valley, con mejor tamaño y proporciones en Tus juegos. Barras de desplazamiento redondeadas y adaptadas al modo claro y oscuro. Los juegos nuevos se muestran como Alfa. Tu cuenta, perfiles y mods se conservan.",
-  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.27.1/Modoker-0.27.1.asar",
-  "bytes": 7345548,
-  "sha256": "0d7829f163cbce2270fca6ea2733c6b0130b44c14007358973aa0f4488df56ce",
+  "notes": "Portada de Stardew Valley renovada con una escena de la granja y mejor encuadre en Cambia de mundo. Incluye los logos oficiales y las barras de desplazamiento personalizadas de 0.27.1. Tu cuenta, perfiles y mods se conservan.",
+  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.27.2/Modoker-0.27.2.asar",
+  "bytes": 8336071,
+  "sha256": "f8aab97253024aa4f83f3f4b550ec609ac4b10b0939f66d7ee259d8498974089",
   "electron": "45.0.0",
-  "version": "0.27.1"
+  "version": "0.27.2"
 }
