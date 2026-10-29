@@ -1,8 +1,8 @@
 {
-  "notes": "Confirmaciones personalizadas con liquid glass para perfiles y guardar/restaurar mods. Burbuja glass al terminar y menor espera visual. Actualizaciones con descarga y verificación visibles hasta reiniciar. Preparación de perfiles con una lectura completa menos, conservando la verificación antes de cambiar el juego. Tus perfiles, cuenta y mods se conservan.",
-  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.26.15/Modoker-0.26.15.asar",
-  "bytes": 4174307,
-  "sha256": "7f87ce41eb05648d3b94ca18e69efd5610d0b55697b6bf6b1cef8065f2561714",
+  "notes": "Corrige el bloqueo de clics al terminar de activar un perfil: la pantalla de carga libera correctamente la interfaz después de confirmar. También restaura la interacción ante errores y cancelaciones. Conserva las mejoras glass y de actualización. Tus perfiles, cuenta y mods se conservan.",
+  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.26.16/Modoker-0.26.16.asar",
+  "bytes": 4174333,
+  "sha256": "9400afe406cc2b39105ef50834a30ad4d9bacb098456738cf43aa00fc7e33286",
   "electron": "45.0.0",
-  "version": "0.26.15"
+  "version": "0.26.16"
 }
