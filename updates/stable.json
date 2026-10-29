@@ -1,8 +1,8 @@
 {
-  "notes": "Carga circular con la M original y estallido suave; el agua sube solo con avance medido. Confirmación de perfiles integrada con detalles desplegables. Contadores que incluyen la biblioteca de perfiles. Cambio directo de perfiles, mensajes de guardado y registro web corregidos. Se conservan tus perfiles, sesiones y mods.",
-  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.26.13/Modoker-0.26.13.asar",
-  "bytes": 4169901,
-  "sha256": "e4d8e9bc664a36e6aa322cd81daab6d60a2b767095908bc87d42b857f228299e",
+  "notes": "Pantallas de carga solo para acciones reales: activar o guardar perfiles, mover mods y análisis manual. Cambiar de juego, seleccionar Original/Con mods y actualizar listas no abre la burbuja. Activar un perfil muestra una única carga después de confirmar. Tus perfiles, cuenta y mods se conservan.",
+  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.26.14/Modoker-0.26.14.asar",
+  "bytes": 4170022,
+  "sha256": "3ac92a06305886a023d2936efca024520decaf0bf7196e1ed3fa438aea23903f",
   "electron": "45.0.0",
-  "version": "0.26.13"
+  "version": "0.26.14"
 }
