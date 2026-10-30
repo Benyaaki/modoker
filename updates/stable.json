@@ -1,8 +1,8 @@
 {
-  "notes": "Portada de Stardew Valley renovada con una escena de la granja y mejor encuadre en Cambia de mundo. Incluye los logos oficiales y las barras de desplazamiento personalizadas de 0.27.1. Tu cuenta, perfiles y mods se conservan.",
-  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.27.2/Modoker-0.27.2.asar",
-  "bytes": 8336071,
-  "sha256": "f8aab97253024aa4f83f3f4b550ec609ac4b10b0939f66d7ee259d8498974089",
+  "version": "0.27.5",
   "electron": "45.0.0",
-  "version": "0.27.2"
+  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.27.5/Modoker-0.27.5.asar",
+  "bytes": 9048879,
+  "sha256": "c6263950e8c9100fa83997029e94b60cbca3086ad8235a1c5ac2fb9fe2d9b5e3",
+  "notes": "Logos PNG transparentes y equilibrados de los seis juegos, con variantes para claro y oscuro. Actividad muestra los logos de Minecraft, Los Sims 4, Elden Ring y Stardew Valley. Mejora al conectar Los Sims 4: reconoce la carpeta localizada de Documentos y evita confundirla con una carpeta inglesa vacía. Incluye etiquetas del launcher y avisos compactos. Tu cuenta, perfiles y mods se conservan."
 }
