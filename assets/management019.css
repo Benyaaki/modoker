@@ -5,3 +5,16 @@
 .person-management .plan-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0 24px}.person-management .plan-choices button{display:grid;align-content:start;gap:9px;text-align:left;padding:18px;border:1px solid var(--line);border-radius:15px;background:var(--paper);color:var(--ink)}.person-management .plan-choices strong{font-size:16px}.person-management .plan-choices span{font-size:12px;font-weight:400;line-height:1.6}.person-management .plan-choices button[aria-pressed=true]{background:var(--lemon);border-color:var(--ink);box-shadow:3px 3px 0 var(--ink)}.person-management .plan-options{margin:20px 0}.month-shortcuts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.month-shortcuts button{padding:9px 15px;border:1px solid var(--line);border-radius:20px;background:var(--paper);color:var(--ink)}.plan-change-preview{padding:20px;border-radius:15px;background:color-mix(in srgb,var(--blue) 9%,var(--paper));margin:22px 0}.plan-change-preview p{margin-bottom:0}.person-management .account-safety{margin-top:26px;border-top:1px solid var(--line);padding-top:22px}.account-safety summary{cursor:pointer;font-weight:700}.person-management [hidden]{display:none!important}.person-management input,.person-management select{max-width:100%}.person-management>p{font-size:14px;line-height:1.7}@media(max-width:750px){.person-management .plan-choices{grid-template-columns:1fr}}
 
 #directory-detail{scroll-margin-top:130px;overflow-anchor:none}#directory-detail:focus{outline:none}#directory-detail:focus-visible{outline:2px solid var(--blue);outline-offset:8px}
+
+/* Keep management navigation independently scrollable within the viewport. */
+@media(min-width:801px){
+ .admin-workspace .workspace-side{height:calc(100vh - 145px);height:calc(100dvh - 145px);min-height:0;max-height:calc(100dvh - 145px);overflow:hidden}
+ .admin-workspace .workspace-brand{flex-shrink:0;margin-bottom:20px}
+ .admin-workspace .workspace-nav{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;scrollbar-width:thin;scrollbar-color:var(--blue) var(--soft);scrollbar-gutter:stable;padding-right:8px;align-content:start;grid-auto-rows:max-content}
+ .admin-workspace .workspace-nav::-webkit-scrollbar{display:block;width:8px}
+ .admin-workspace .workspace-nav::-webkit-scrollbar-track{background:var(--soft);border-radius:12px}
+ .admin-workspace .workspace-nav::-webkit-scrollbar-thumb{background:var(--blue);border:2px solid var(--soft);border-radius:12px}
+ .admin-workspace .workspace-nav:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:10px}
+ .admin-workspace .management-role-label{flex-shrink:0;margin:12px 0 0;padding:9px 10px}
+ .admin-workspace .workspace-side-bottom{flex-shrink:0;margin-top:0;padding-top:12px}
+}
