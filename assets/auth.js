@@ -31,7 +31,7 @@
   field('#access-password').minLength=register||update?8:1;
   field('#access-password').autocomplete=register||update?'new-password':'current-password';
   field('#access-confirm').required=register||update;field('#access-confirm').disabled=!(register||update);
-  field('#access-name').required=false;field('#access-name').disabled=!register;
+  field('#access-name').required=register;field('#access-name').disabled=!register;
   field('#forgot-password').hidden=reset||update;field('#back-login').hidden=!(reset||update);
   field('#access-title').textContent=register?'Hazlo tuyo.':reset?'Vuelve a entrar.':update?'Una nueva llave.':'Qué bueno verte.';
   field('#access-description').textContent=register?'Crea tu cuenta y confirma tu correo.':reset?'Te enviaremos un enlace para recuperar tu acceso.':update?'Elige una contraseña nueva para tu cuenta.':'Vuelve a tu espacio de Modoker.';
@@ -75,6 +75,7 @@
  form?.addEventListener('submit',async event=>{
   event.preventDefault();if(busy||!form.reportValidity())return;
   const email=field('#access-email').value.trim(),password=field('#access-password').value;
+  if(mode==='register'&&!field('#access-name').value.trim()){say('Escribe tu nombre para crear tu cuenta.',true);field('#access-name').focus();return;}
   if((mode==='register'||mode==='update')&&password!==field('#access-confirm').value){say('Las contraseñas no coinciden.',true);return;}
   if(mode==='update'&&!recovering){say('Abre primero el enlace de recuperación enviado a tu correo.',true);return;}
   busy=true;field('#access-submit').disabled=true;form.setAttribute('aria-busy','true');say('Un momento…');
