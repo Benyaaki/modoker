@@ -1,8 +1,8 @@
 {
-  "version": "0.27.6",
+  "version": "0.27.7",
   "electron": "45.0.0",
-  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.27.6/Modoker-0.27.6.asar",
-  "bytes": 8904118,
-  "sha256": "08e021a023665c20baf32842609de3e08d7bb10662e536d9728fc8d51e39b867",
-  "notes": "Nueva Biblioteca con las portadas de los seis juegos: elige una para abrir su espacio y vuelve a la galería cuando quieras. Tus juegos se desvanece suavemente en los bordes al desplazarte. Nueva portada de Minecraft sin franja negra ni título incrustado. Tu cuenta, perfiles y mods se conservan."
+  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.27.7/Modoker-0.27.7.asar",
+  "bytes": 8896750,
+  "sha256": "b0d21efdc5e95730b2a7712955df623a67d73b24166901339d6fea513a316a7a",
+  "notes": "Nueva Biblioteca con las portadas de los seis juegos: elige una para abrir su espacio y vuelve a la galería cuando quieras. Tus juegos se desvanece suavemente en los bordes al desplazarte. Nueva portada de Minecraft con una construcción junto a la montaña, sin franjas ni texto incrustado. Tu cuenta, perfiles y mods se conservan."
 }
