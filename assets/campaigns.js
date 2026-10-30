@@ -7,7 +7,8 @@
  const message=(selector,text,error=false)=>{const n=$(selector);if(n){n.replaceChildren(document.createTextNode(text));n.dataset.error=String(error);}};
  const errors={confirm_email:'Confirma tu correo antes de canjear el código.',invalid_code:'El código no es válido, ha vencido o está desactivado. Comprueba que sea del tipo correcto.',rate_limit:'Has realizado varios intentos. Espera 15 minutos antes de volver a intentarlo.',creator_already_redeemed:'Esta cuenta ya canjeó su código de creador. Solo se permite un canje, aunque cambies de creador o termine tu Plus.',own_code:'No puedes canjear tu propio código de creador.',code_exhausted:'Este código ya alcanzó su límite de canjes.'};
  const rpc=async(name,args)=>{const {data,error}=await client.rpc(name,args);if(error)throw error;return data;};
- const readable=e=>e?.code==='23505'?'Ese código ya existe. Elige otro.':e?.code==='22023'?'Revisa los campos. El creador debe tener una cuenta con correo confirmado.':e?.code==='42501'?'No tienes permiso para esta acción. Comprueba tu sesión y acceso.':'No pudimos conectar. Inténtalo de nuevo.';
+ const editErrors={'Campaign changed; reload':'Este código cambió desde que lo abriste. Recarga sus datos antes de guardar.','Limit below existing redemptions':'El límite no puede ser menor que los canjes ya realizados.','Cannot transfer redeemed code':'Un código con canjes no puede reasignarse a otro creador.','Creator role paused':'Reactiva el rol del creador antes de activar su código.','Invalid code format':'Usa de 3 a 64 letras, números o guiones para el código.','Campaign not found':'No encontramos ese código. Actualiza la lista.'};
+ const readable=e=>editErrors[e?.message]||(e?.code==='23505'?'Ese código ya existe. Elige otro.':e?.code==='22023'?'Revisa los campos. El creador debe tener una cuenta con correo confirmado.':e?.code==='42501'?'No tienes permiso para esta acción. Comprueba tu sesión y acceso.':'No pudimos conectar. Inténtalo de nuevo.');
  const disable=(form,busy)=>{form.setAttribute('aria-busy',String(busy));for(const n of form.querySelectorAll('button,input,select'))n.disabled=busy;};
  const date=x=>x?new Date(x).toLocaleDateString('es-CL'):'Sin vencimiento';
  let currentUser=null,sessionTicket=0,downloadAbort=null,memberTicket=0;
@@ -108,7 +109,7 @@
  document.addEventListener('modoker:account',e=>{if(e.detail?.user){currentUser=e.detail.user;member();}else if(!e.detail?.user){currentUser=null;clearCommunity();}});
  // Administration is independently authenticated and authorized by every RPC.
  let adminBusy=false;
- let creatorRows=[];
+ let creatorRows=[],campaignRows=[],codePage=0,selectedCampaign=null,editBusy=false;
  let adminTicket=0;
 
  function renderCreatorRows(){
@@ -125,12 +126,57 @@
   const ticket=++adminTicket;message('#campaign-status','Actualizando códigos y métricas…');
   try{const [s,community]=await Promise.all([rpc('modoker_admin_campaigns',{p_action:'list',p_payload:{}}),rpc('modoker_admin_creators',{p_action:'list',p_payload:{}})]);if(ticket!==adminTicket)return;const list=$('#campaign-list');list.replaceChildren();
    const m=community.metrics||{};metrics('#campaign-admin-metrics',[['Creadores registrados',m.creators,`${count(m.active_creators)} con rol activo`],['Códigos de creador',m.creator_codes,`${count(m.active_codes)} admiten nuevos canjes`],['Canjes confirmados',m.redemptions,`${count(m.last30)} en los últimos 30 días`],['Meses para creadores',m.reward_months,'Dos por cada hito de 100 canjes'],['Accesos anticipados',m.early_grants,'Invitaciones canjeadas y no revocadas']]);chart('#campaign-admin-chart',community.daily||[]);creatorRows=community.creators||[];renderCreatorRows();fillCreatorPicker();
-   if(!s.codes.length)list.append(el('p','Todavía no hay códigos. Crea el primero para tu comunidad.'));
-   for(const c of s.codes){const box=el('article',undefined,'campaign-card');box.append(el('span',c.kind==='creator'?'CREADOR':'ACCESO ANTICIPADO','eyebrow'),el('h3',c.label),el('span',c.active?'Activo':'Pausado','campaign-tag'),el('p',c.code?`Código: ${c.code}`:'Código privado: solo se muestra al crearlo.'),el('p',`${c.uses} de ${c.max_uses} canjes · ${date(c.expires_at)}`));if(c.owner_email)box.append(el('p',c.owner_email,'campaign-caption'));if(c.kind==='creator')box.append(el('p',`${c.reward_months} meses de recompensa · dos por cada 100 canjes.`));const toggle=el('button',c.active?'Pausar código':'Activar código','btn subtle');toggle.type='button';const role=creatorRows.find(r=>r.email===c.owner_email);if(c.kind==='creator'&&role&&!role.active){toggle.disabled=true;box.append(el('p','Reactiva primero el rol en la pestaña Creadores.','campaign-caption'));}toggle.addEventListener('click',async()=>{toggle.disabled=true;try{await rpc('modoker_admin_campaigns',{p_action:'toggle',p_payload:{id:c.id,active:!c.active}});await adminLoad();message('#campaign-status','Estado del código actualizado.');}catch(e){message('#campaign-status',readable(e),true);}finally{toggle.disabled=false;}});box.append(toggle);list.append(box);}
-   message('#campaign-launch-status',s.launch_at?`Lanzamiento iniciado el ${date(s.launch_at)}. Los beneficios se aplican al consultar cada cuenta.`:'Los beneficios están reservados. Todavía no se ha iniciado su vigencia.');$('#campaign-launch').hidden=!!s.launch_at;message('#campaign-status','Datos actualizados.');
-  }catch(e){message('#campaign-status',readable(e),true);}
+   campaignRows=s.codes||[];renderCodeRows();
+   message('#campaign-launch-status',s.launch_at?`Lanzamiento iniciado el ${date(s.launch_at)}. Los beneficios se aplican al consultar cada cuenta.`:'Los beneficios están reservados. Todavía no se ha iniciado su vigencia.');$('#campaign-launch').hidden=!!s.launch_at;message('#campaign-status','Datos actualizados.');return true;
+  }catch(e){message('#campaign-status',readable(e),true);return false;}
  }
  document.addEventListener('modoker:campaigns',adminLoad);$('#campaign-refresh')?.addEventListener('click',adminLoad);
+
+ function codeState(c){if(!c.active)return 'paused';if(c.expires_at&&new Date(c.expires_at)<=new Date())return 'expired';if(Number(c.uses)>=Number(c.max_uses))return 'exhausted';return 'active';}
+ const codeStates={active:'Activo',paused:'Pausado',expired:'Vencido',exhausted:'Agotado'};
+ function renderCodeRows(){
+  const list=$('#campaign-list');if(!list)return;list.replaceChildren();const q=($('#campaign-search')?.value||'').trim().toLocaleUpperCase(),kind=$('#campaign-filter-kind')?.value||'all',state=$('#campaign-filter-state')?.value||'all';
+  const rows=campaignRows.filter(c=>(kind==='all'||c.kind===kind)&&(state==='all'||codeState(c)===state)&&`${c.code||''} ${c.label} ${c.owner_email||''}`.toLocaleUpperCase().includes(q));
+  const pages=Math.max(1,Math.ceil(rows.length/15));codePage=Math.min(codePage,pages-1);message('#campaign-list-count',`${count(rows.length)} códigos · ${count(campaignRows.length)} en total`);
+  if(!rows.length)list.append(el('p',campaignRows.length?'No hay códigos que coincidan con estos filtros.':'Todavía no hay códigos. Empieza desde Nuevo código.','campaign-caption'));
+  for(const c of rows.slice(codePage*15,codePage*15+15)){
+   const row=el('article',undefined,'code-row'),main=el('div',undefined,'code-row-main');main.append(el('strong',c.code||c.label),el('span',c.kind==='creator'?`${c.label} · ${c.owner_email||'Sin creador'}`:'Invitación privada · acceso anticipado'));
+   const usage=el('div',undefined,'code-row-usage');usage.append(el('strong',`${count(c.uses)} / ${count(c.max_uses)}`),el('span','canjes'));
+   const status=el('div',undefined,'code-row-status');status.append(el('span',codeStates[codeState(c)],`campaign-tag code-state-${codeState(c)}`),el('small',c.expires_at?`Hasta ${date(c.expires_at)}`:'Sin vencimiento'));
+   const edit=el('button','Editar ↗','btn subtle');edit.type='button';edit.dataset.editCampaign=c.id;edit.setAttribute('aria-label',`Editar ${c.code||c.label}`);edit.addEventListener('click',()=>openEditor(c.id));row.append(main,usage,status,edit);list.append(row);
+  }
+  $('#campaign-previous').disabled=codePage===0;$('#campaign-next').disabled=codePage>=pages-1;message('#campaign-page',`${codePage+1} / ${pages}`);
+ }
+ for(const key of ['#campaign-search','#campaign-filter-kind','#campaign-filter-state'])$(key)?.addEventListener(key==='#campaign-search'?'input':'change',()=>{codePage=0;renderCodeRows();});
+ $('#campaign-previous')?.addEventListener('click',()=>{codePage=Math.max(0,codePage-1);renderCodeRows();});$('#campaign-next')?.addEventListener('click',()=>{codePage++;renderCodeRows();});
+ const localDate=iso=>{if(!iso)return '';const d=new Date(iso);return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,16);};
+ function openEditor(id,focus=true){
+  if(editBusy)return;const c=campaignRows.find(c=>c.id===id);if(!c)return;selectedCampaign=c;const panel=$('#campaign-editor'),form=$('#campaign-edit'),creator=c.kind==='creator';panel.hidden=false;form.reset();
+  message('#campaign-editor-kind',creator?'CÓDIGO DE CREADOR':'INVITACIÓN PRIVADA');message('#campaign-editor-title',c.code||c.label);message('#campaign-editor-summary',`${count(c.uses)} canjes registrados${creator?` · ${count(c.reward_months)} meses ganados por el creador`:''}. Los datos acumulados se conservan al editar.`);
+  form.elements.label.value=c.label;form.elements.active.value=String(c.active);form.elements.code.value=c.code||'';form.elements.code.required=creator;form.elements.max_uses.value=c.max_uses;form.elements.max_uses.min=Math.max(1,Number(c.uses)||0);form.elements.expires_at.value=localDate(c.expires_at);form.elements.expires_at.dataset.originalValue=form.elements.expires_at.value;
+  form.elements.owner_id.replaceChildren();for(const person of creatorRows){const option=el('option',`${person.name||'Creador'} · ${person.email}${person.active?'':' · rol pausado'}`);option.value=person.user_id;form.elements.owner_id.append(option);}
+  const owner=c.owner_id||creatorRows.find(r=>r.email===c.owner_email)?.user_id;if(owner&&!Array.from(form.elements.owner_id.options).some(o=>o.value===owner)){const option=el('option',c.owner_email||'Creador asociado');option.value=owner;form.elements.owner_id.append(option);}form.elements.owner_id.value=owner||'';
+  form.elements.owner_id.disabled=!creator||Number(c.uses)>0;$('#campaign-edit-owner-field').hidden=!creator;$('#campaign-edit-regenerate-field').hidden=creator;form.elements.regenerate.disabled=creator;
+  message('#campaign-edit-code-note',creator?'Si cambias el código, el anterior dejará de admitir canjes. El progreso y las recompensas siguen asociados a esta campaña. Con canjes registrados no se puede cambiar el creador.':'Por seguridad no recuperamos el código privado anterior. Deja el campo vacío para conservarlo o escribe uno nuevo. También puedes generar una nueva invitación. Los accesos ya concedidos se conservan.');
+  message('#campaign-edit-status','');if(focus){panel.scrollIntoView({behavior:'smooth',block:'start'});panel.focus({preventScroll:true});}
+ }
+ function closeEditor(){if(editBusy)return;const id=selectedCampaign?.id;$('#campaign-editor').hidden=true;selectedCampaign=null;document.querySelector(`[data-edit-campaign="${id}"]`)?.focus({preventScroll:true});}
+ $('#campaign-editor-close')?.addEventListener('click',closeEditor);$('#campaign-edit-cancel')?.addEventListener('click',closeEditor);
+ $('#campaign-edit [name=regenerate]')?.addEventListener('change',event=>{const field=$('#campaign-edit').elements.code;field.disabled=event.currentTarget.checked;if(field.disabled)field.value='';});
+ $('#campaign-edit')?.addEventListener('submit',async event=>{
+  event.preventDefault();if(editBusy||!selectedCampaign)return;const form=event.currentTarget,c=selectedCampaign,payload=Object.fromEntries(new FormData(form));payload.expected_updated_at=c.updated_at;payload.max_uses=Number(payload.max_uses);payload.active=payload.active==='true';payload.regenerate=form.elements.regenerate.checked;payload.expires_at=form.elements.expires_at.value===form.elements.expires_at.dataset.originalValue?c.expires_at:(payload.expires_at?new Date(payload.expires_at).toISOString():null);if(!payload.owner_id)delete payload.owner_id;
+  editBusy=true;disable(form,true);$('#campaign-editor-close').disabled=true;message('#campaign-edit-status','Guardando los cambios…');
+  try{
+   const result=await rpc('modoker_admin_update_campaign',{p_id:c.id,p_payload:payload});const refreshed=await adminLoad();editBusy=false;if(refreshed)openEditor(c.id,false);
+   message('#campaign-status','Código actualizado. Se conservaron sus canjes y beneficios.');message('#campaign-edit-status',refreshed?'Cambios guardados.':'Cambios guardados. No pudimos recargar el detalle; actualiza los datos antes de volver a editar.');
+   if(c.kind==='early_access'&&result.new_code){const output=el('div',undefined,'campaign-result');output.append(el('strong','Guarda tu nueva invitación; no volverá a mostrarse.'));const field=el('input');field.className='campaign-code';field.readOnly=true;field.value=result.new_code;field.setAttribute('aria-label','Nueva invitación privada');const copy=el('button','Copiar invitación','btn subtle');copy.type='button';copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(result.new_code);copy.textContent='Copiada';}catch{field.select();}});output.append(field,copy);$('#campaign-edit-status').append(output);}
+  }catch(e){message('#campaign-edit-status',readable(e),true);if(e.code==='40001'){const reload=el('button','Recargar datos del código','btn subtle');reload.type='button';reload.addEventListener('click',async()=>{if(await adminLoad())openEditor(c.id,false);});$('#campaign-edit-status').append(reload);}}
+  finally{editBusy=false;disable(form,false);$('#campaign-editor-close').disabled=false;if(selectedCampaign){form.elements.owner_id.disabled=selectedCampaign.kind!=='creator'||Number(selectedCampaign.uses)>0;form.elements.regenerate.disabled=selectedCampaign.kind==='creator';form.elements.code.disabled=form.elements.regenerate.checked;}}
+ });
+ // Normalize the actual value, including pasted text, without moving the caret to the end.
+ for(const field of document.querySelectorAll('#campaign-create [name=code],#campaign-edit [name=code],#creator-redeem [name=code],#early-redeem [name=code]')){
+  field.autocapitalize='characters';field.spellcheck=false;field.classList.add('uppercase-code');const normalize=event=>{if(event.isComposing)return;const start=field.selectionStart,end=field.selectionEnd,value=field.value,upper=value.toUpperCase();if(value===upper)return;field.value=upper;if(start!==null)field.setSelectionRange(value.slice(0,start).toUpperCase().length,value.slice(0,end).toUpperCase().length);};field.addEventListener('input',normalize);field.addEventListener('compositionend',normalize);
+ }
  function fillCreatorPicker(){
   const form=$('#campaign-create');if(!form)return;const select=form.elements.creator_id,selected=select.value;
   select.replaceChildren(el('option','Elige un creador registrado'));select.firstElementChild.value='';
