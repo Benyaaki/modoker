@@ -1,8 +1,8 @@
 {
-  "version": "0.27.5",
+  "version": "0.27.6",
   "electron": "45.0.0",
-  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.27.5/Modoker-0.27.5.asar",
-  "bytes": 9048879,
-  "sha256": "c6263950e8c9100fa83997029e94b60cbca3086ad8235a1c5ac2fb9fe2d9b5e3",
-  "notes": "Logos PNG transparentes y equilibrados de los seis juegos, con variantes para claro y oscuro. Actividad muestra los logos de Minecraft, Los Sims 4, Elden Ring y Stardew Valley. Mejora al conectar Los Sims 4: reconoce la carpeta localizada de Documentos y evita confundirla con una carpeta inglesa vacía. Incluye etiquetas del launcher y avisos compactos. Tu cuenta, perfiles y mods se conservan."
+  "url": "https://github.com/Benyaaki/modoker/releases/download/v0.27.6/Modoker-0.27.6.asar",
+  "bytes": 8904118,
+  "sha256": "08e021a023665c20baf32842609de3e08d7bb10662e536d9728fc8d51e39b867",
+  "notes": "Nueva Biblioteca con las portadas de los seis juegos: elige una para abrir su espacio y vuelve a la galería cuando quieras. Tus juegos se desvanece suavemente en los bordes al desplazarte. Nueva portada de Minecraft sin franja negra ni título incrustado. Tu cuenta, perfiles y mods se conservan."
 }
