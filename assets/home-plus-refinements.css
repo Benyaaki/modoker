@@ -5,3 +5,6 @@
 html[data-motion=reduce] .world-reel-section [class*="tgh-t-"]{animation-play-state:paused!important}html[data-motion=reduce] .profile-experience-art *,html[data-motion=reduce] .profile-symbol *{animation:none!important;transition:none!important}@media(prefers-reduced-motion:reduce){.profile-experience-art *, .profile-symbol *{animation:none!important;transition:none!important}.workbench-sidebar [data-story-profile]{transition:none}.workbench-sidebar [data-story-profile]:hover{transform:none}}
 
 html[data-theme=dark] body[data-page="index.html"] .nav-shell,html[data-theme=dark] body[data-page="plus.html"] .nav-shell{background:#202734eb;border-color:var(--line)}
+
+/* Stable decoded textures on every facet, including the loop boundary. */
+.tgh-strip{background:transparent;backface-visibility:hidden;-webkit-backface-visibility:hidden}.tgh-image{backface-visibility:hidden;-webkit-backface-visibility:hidden;image-rendering:auto}

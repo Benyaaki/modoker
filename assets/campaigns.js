@@ -94,7 +94,7 @@
   if(downloadAbort||!earlyRelease)return;const control=new AbortController();downloadAbort=control;const button=$('#early-download');button.disabled=true;button.textContent='Descargando Modoker…';$('#early-cancel').hidden=false;
   const status=$('#early-status'),pulse=el('span',undefined,'download-pulse');pulse.setAttribute('aria-hidden','true');for(let i=0;i<3;i++)pulse.append(el('i'));status.replaceChildren(pulse,document.createTextNode('Preparando tu instalador…'));
   try{
-   const r=await rpc('modoker_early_download');if(!r||!Array.isArray(r.objects)||!r.objects.length)throw Error('release');
+   const r=await rpc('modoker_early_download');if(!r||!Array.isArray(r.objects)||!r.objects.length)throw Error('release');earlyRelease=r;$('#early-version').textContent=`Windows x64 · Instalador .exe · ${r.version} · ${(r.bytes/1048576).toFixed(1)} MB`;
    const {data:links,error}=await client.storage.from('modoker-early').createSignedUrls(r.objects.map(p=>p.name),600);if(error||links.some(l=>l.error||!l.signedUrl))throw error||Error('access');
    const pieces=new Array(r.objects.length);let next=0;
    await Promise.all(Array.from({length:Math.min(2,pieces.length)},async()=>{while(next<pieces.length){const i=next++;pieces[i]=await receive(links[i].signedUrl,r.objects[i],control.signal);}}));
